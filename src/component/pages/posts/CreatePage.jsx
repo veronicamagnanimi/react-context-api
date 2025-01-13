@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,19 @@ const initialForm = {
 
 const CreatePage = () => {
   const [formData, setFormData] = useState(initialForm);
+  const [tags, setTags] = useState([]);
+
+  //STAMPARE LISTA TAGS
+useEffect(() => {
+getTags();
+}, [])
+
+const getTags = () => {
+  axios.get(`${apiUrl}/tags`).then((resp) => {
+    console.log("Tag", resp);
+    setTags(resp.data.tags);
+  });
+};
 
   const navigate = useNavigate();
 
@@ -66,6 +79,11 @@ const CreatePage = () => {
             onChange={handleInputChange}
           />
         </div>
+
+        <h4 className="text-secondary">Tags</h4>
+        <ul>{tags.map((curTag, index) => <li key={index}>{curTag}</li>)}</ul>
+        
+
         <button type="submit" className="btn btn-secondary mt-3">
           Add Article
         </button>

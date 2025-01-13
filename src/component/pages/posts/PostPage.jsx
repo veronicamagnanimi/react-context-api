@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AppPost from "../../AppPost";
 import { Link } from "react-router-dom";
+import Filters from "../../Filters";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const PostPage = () => {
@@ -13,27 +14,31 @@ const PostPage = () => {
   //USE EFFECT
   useEffect(() => {
     getPosts();
-  }, []);
-
-  useEffect(() => {
-    getTags();
   }, [filter]);
+
+  // useEffect(() => {
+  //   getTags();
+  // }, [filter]);
 
   //AXIOS
   const getPosts = () => {
-    axios.get(`${apiUrl}/bacheca`).then((resp) => {
+    let url = `${apiUrl}/bacheca`;
+    if (filter !== "all") {
+      url += `?tag=${filter}`
+    }
+    axios.get(url).then((resp) => {
       console.log("Dati ricevuti", resp);
       setActiveArticles(resp.data.posts);
     });
   };
 
-  //SELECT TAG
-  const getTags = () => {
-    axios.get(`${apiUrl}/tags`).then((resp) => {
-      console.log("Tag", resp);
-      setTags(resp.data.tags);
-    });
-  };
+  // SELECT TAG
+  // const getTags = () => {
+  //   axios.get(`${apiUrl}/tags`).then((resp) => {
+  //     console.log("Tag", resp);
+  //     setTags(resp.data.tags);
+  //   });
+  // };
 
   //FUNZIONE DELETE
   const handleDelete = (idDaCancellare) => {
@@ -49,19 +54,7 @@ const PostPage = () => {
     <>
       <div className="container">
         <section className="d-flex justify-content-between align-items-center">
-          <select
-            name="tag"
-            id=""
-            value={filter}
-            onChange={(event) => setFilter(event.target.value)}
-          >
-            <option value="all">All tags</option>
-            {tags.map((curTag, index) => (
-              <option key={index} value={curTag}>
-                {curTag}
-              </option>
-            ))}
-          </select>
+          <Filters tags={tags}selectedTag={filter} onFilterChange={setFilter} />
           <Link className="btn btn-secondary" to="/posts/create">
             Aggiungi un nuovo articolo
           </Link>
