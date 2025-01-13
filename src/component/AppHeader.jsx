@@ -1,18 +1,23 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import GlobalContext from "../contexts/GlobalContext";
 
 const AppHeader = () => {
 
-  const navbar = [
-    {
-      path:"/", title:"Home Page"
-    },
-    {
-      path:"/ChiSiamo", title:"Chi Siamo"
-    },
-    {
-    path:"/posts", title:"Posts List"
-    }
-  ]
+  const globalProviderValue = useContext(GlobalContext);
+  const {navbar} = globalProviderValue;
+
+  // const navbar = [
+  //   {
+  //     path:"/", title:"Home Page"
+  //   },
+  //   {
+  //     path:"/ChiSiamo", title:"Chi Siamo"
+  //   },
+  //   {
+  //   path:"/posts", title:"Posts List"
+  //   }
+  // ]
 
     return (
 

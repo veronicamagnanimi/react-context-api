@@ -7,9 +7,27 @@ import DashBoardPage from "./component/pages/DashBoardPage";
 import ShowPage from "./component/pages/posts/ShowPage";
 import CreatePage from "./component/pages/posts/CreatePage";
 import NotFoundPage from "./component/pages/posts/NotFoundPage";
+import GlobalContext from "./contexts/GlobalContext";
 
 function App() {
+  const navbar = [
+    {
+      path:"/", title:"Home Page"
+    },
+    {
+      path:"/ChiSiamo", title:"Chi Siamo"
+    },
+    {
+    path:"/posts", title:"Posts List"
+    }
+  ];
+
+  const globalProviderValue = {
+    navbar
+  }
+
   return (
+    <GlobalContext.Provider value={globalProviderValue}>
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
@@ -25,6 +43,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </GlobalContext.Provider>
   );
 }
 
