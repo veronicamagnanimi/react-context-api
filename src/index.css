@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 400px;
+}
+
+.display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    background-color: #6c757d;
+    margin-bottom: 20px;
+    height: 100px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.dFlex ul {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 35px;
+}
+
+a.active {
+    color: black
+}
+
+.tag {
+    margin-right: 5px;
+}
