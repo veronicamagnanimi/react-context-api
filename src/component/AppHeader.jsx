@@ -7,18 +7,6 @@ const AppHeader = () => {
   const globalProviderValue = useContext(GlobalContext);
   const {navbar} = globalProviderValue;
 
-  // const navbar = [
-  //   {
-  //     path:"/", title:"Home Page"
-  //   },
-  //   {
-  //     path:"/ChiSiamo", title:"Chi Siamo"
-  //   },
-  //   {
-  //   path:"/posts", title:"Posts List"
-  //   }
-  // ]
-
     return (
 
   <header>

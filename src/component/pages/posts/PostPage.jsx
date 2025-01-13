@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import AppPost from "../../AppPost";
 import { Link } from "react-router-dom";
@@ -16,9 +16,6 @@ const PostPage = () => {
     getPosts();
   }, [filter]);
 
-  // useEffect(() => {
-  //   getTags();
-  // }, [filter]);
 
   //AXIOS
   const getPosts = () => {
@@ -28,17 +25,10 @@ const PostPage = () => {
     }
     axios.get(url).then((resp) => {
       console.log("Dati ricevuti", resp);
-      setActiveArticles(resp.data.posts);
+     setActiveArticles(resp.data.posts);
     });
   };
 
-  // SELECT TAG
-  // const getTags = () => {
-  //   axios.get(`${apiUrl}/tags`).then((resp) => {
-  //     console.log("Tag", resp);
-  //     setTags(resp.data.tags);
-  //   });
-  // };
 
   //FUNZIONE DELETE
   const handleDelete = (idDaCancellare) => {
@@ -46,7 +36,7 @@ const PostPage = () => {
       const newArray = activeArticles.filter(
         (curPost) => curPost.id !== idDaCancellare
       );
-      setActiveArticles(newArray);
+     setActiveArticles(newArray);
     });
   };
 
